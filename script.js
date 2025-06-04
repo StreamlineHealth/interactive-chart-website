@@ -1,31 +1,31 @@
 // Get slider elements and their value displays
 const sliders = {
-    availability: document.getElementById('availability'),
-    accessibility: document.getElementById('accessibility'),
-    accommodation: document.getElementById('accommodation'),
-    affordability: document.getElementById('affordability'),
-    acceptability: document.getElementById('acceptability')
+    nutrition: document.getElementById('nutrition'),
+    exercise: document.getElementById('exercise'),
+    sleep: document.getElementById('sleep'),
+    stress: document.getElementById('stress'),
+    wellbeing: document.getElementById('wellbeing')
 };
 
 const valueDisplays = {
-    availability: document.getElementById('availability-value'),
-    accessibility: document.getElementById('accessibility-value'),
-    accommodation: document.getElementById('accommodation-value'),
-    affordability: document.getElementById('affordability-value'),
-    acceptability: document.getElementById('acceptability-value')
+    nutrition: document.getElementById('nutrition-value'),
+    exercise: document.getElementById('exercise-value'),
+    sleep: document.getElementById('sleep-value'),
+    stress: document.getElementById('stress-value'),
+    wellbeing: document.getElementById('wellbeing-value')
 };
 
 // Get chart canvas and overall score display
-const ctx = document.getElementById('satisfactionChart').getContext('2d');
+const ctx = document.getElementById('healthChart').getContext('2d');
 const overallScoreDisplay = document.getElementById('overall-score');
 
 // Initialize gauge chart
-let satisfactionChart = new Chart(ctx, {
+let healthChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Satisfaction', 'Remaining'],
+        labels: ['Health Score', 'Remaining'],
         datasets: [{
-            data: [3, 2],
+            data: [50, 50],
             backgroundColor: ['#4caf50', '#e0e0e0'],
             borderWidth: 0
         }]
@@ -43,18 +43,18 @@ let satisfactionChart = new Chart(ctx, {
     }
 });
 
-// Calculate overall satisfaction
-function calculateSatisfaction() {
+// Calculate overall health score
+function calculateHealthScore() {
     const total = Object.values(sliders).reduce((sum, slider) => sum + parseInt(slider.value), 0);
-    return (total / 5).toFixed(1);
+    return Math.round(total / 5);
 }
 
 // Update chart and score display
 function updateChart() {
-    const score = calculateSatisfaction();
+    const score = calculateHealthScore();
     overallScoreDisplay.textContent = score;
-    satisfactionChart.data.datasets[0].data = [score, 5 - score];
-    satisfactionChart.update();
+    healthChart.data.datasets[0].data = [score, 100 - score];
+    healthChart.update();
 }
 
 // Update displays and chart on slider change
@@ -68,8 +68,8 @@ Object.values(sliders).forEach(slider => {
 // Reset sliders to default
 document.getElementById('reset').addEventListener('click', () => {
     Object.values(sliders).forEach(slider => {
-        slider.value = 3;
-        valueDisplays[slider.id].textContent = 3;
+        slider.value = 50;
+        valueDisplays[slider.id].textContent = 50;
     });
     updateChart();
 });
