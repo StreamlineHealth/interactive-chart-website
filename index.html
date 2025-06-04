@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Satisfaction Calculator</title>
+    <title>Health Score Predictor</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Patient Satisfaction with Access to Healthcare</h1>
-    <p>Use the sliders to rate satisfaction (1 = very dissatisfied, 5 = very satisfied).</p>
+    <h1>Health Score Predictor</h1>
+    <p>Adjust the sliders to rate each factor (1 = very poor, 100 = excellent).</p>
 
     <div class="slider-container">
-        <label for="availability">Availability: <span id="availability-value">3</span></label>
-        <input type="range" id="availability" min="1" max="5" step="1" value="3">
+        <label for="nutrition">Nutrition: <span id="nutrition-value">50</span></label>
+        <input type="range" id="nutrition" min="1" max="100" step="1" value="50">
 
-        <label for="accessibility">Accessibility: <span id="accessibility-value">3</span></label>
-        <input type="range" id="accessibility" min="1" max="5" step="1" value="3">
+        <label for="exercise">Exercise: <span id="exercise-value">50</span></label>
+        <input type="range" id="exercise" min="1" max="100" step="1" value="50">
 
-        <label for="accommodation">Accommodation: <span id="accommodation-value">3</span></label>
-        <input type="range" id="accommodation" min="1" max="5" step="1" value="3">
+        <label for="sleep">Sleep: <span id="sleep-value">50</span></label>
+        <input type="range" id="sleep" min="1" max="100" step="1" value="50">
 
-        <label for="affordability">Affordability: <span id="affordability-value">3</span></label>
-        <input type="range" id="affordability" min="1" max="5" step="1" value="3">
+        <label for="stress">Stress Management: <span id="stress-value">50</span></label>
+        <input type="range" id="stress" min="1" max="100" step="1" value="50">
 
-        <label for="acceptability">Acceptability: <span id="acceptability-value">3</span></label>
-        <input type="range" id="acceptability" min="1" max="5" step="1" value="3">
+        <label for="wellbeing">Mental Well-being: <span id="wellbeing-value">50</span></label>
+        <input type="range" id="wellbeing" min="1" max="100" step="1" value="50">
     </div>
 
     <div class="chart-container">
-        <canvas id="satisfactionChart"></canvas>
-        <p>Overall Satisfaction: <span id="overall-score">3.0</span></p>
+        <canvas id="healthChart"></canvas>
+        <p>Predicted Health Score: <span id="overall-score">50</span></p>
     </div>
 
     <button id="reset">Reset to Default</button>
