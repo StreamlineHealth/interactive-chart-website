@@ -1,78 +1,106 @@
-// Get slider elements and their value displays
-const sliders = {
-    availability: document.getElementById('availability'),
-    accessibility: document.getElementById('accessibility'),
-    accommodation: document.getElementById('accommodation'),
-    affordability: document.getElementById('affordability'),
-    acceptability: document.getElementById('acceptability')
-};
-
-const valueDisplays = {
-    availability: document.getElementById('availability-value'),
-    accessibility: document.getElementById('accessibility-value'),
-    accommodation: document.getElementById('accommodation-value'),
-    affordability: document.getElementById('affordability-value'),
-    acceptability: document.getElementById('acceptability-value')
-};
-
-// Get chart canvas and overall score display
-const ctx = document.getElementById('satisfactionChart').getContext('2d');
-const overallScoreDisplay = document.getElementById('overall-score');
-
-// Initialize gauge chart
-let satisfactionChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Satisfaction', 'Remaining'],
-        datasets: [{
-            data: [3, 2],
-            backgroundColor: ['#4caf50', '#e0e0e0'],
-            borderWidth: 0
-        }]
+// Sample data for procedures, locations, workflow times (minutes), and performance ratios
+const data = {
+    CT: {
+        'Hospital A': {
+            workflow: { 'Check-In': 5, Preparation: 8, Scanning: 15, Review: 6, Reporting: 4 },
+            performance: 0.82
+        },
+        'Hospital B': {
+            workflow: { 'Check-In': 6, Preparation: 10, Scanning: 18, Review: 7, Reporting: 5 },
+            performance: 0.75
+        }
     },
-    options: {
-        circumference: Math.PI,
-        rotation: -Math.PI,
-        cutout: '70%',
-        tooltips: { enabled: false },
-        hover: { mode: null },
-        animation: {
-            animateRotate: false,
-            animateScale: true
+    MRI: {
+        'Hospital A': {
+            workflow: { 'Check-In': 7, Preparation: 12, Scanning: 25, Review: 8, Reporting: 6 },
+            performance: 0.68
+        },
+        'Hospital B': {
+            workflow: { 'Check-In': 6, Preparation: 11, Scanning: 22, Review: 7, Reporting: 5 },
+            performance: 0.7
+        }
+    },
+    'X-Ray': {
+        'Hospital A': {
+            workflow: { 'Check-In': 4, Preparation: 5, Scanning: 7, Review: 3, Reporting: 2 },
+            performance: 0.9
+        },
+        'Hospital B': {
+            workflow: { 'Check-In': 5, Preparation: 6, Scanning: 8, Review: 4, Reporting: 3 },
+            performance: 0.85
         }
     }
-});
+};
 
-// Calculate overall satisfaction
-function calculateSatisfaction() {
-    const total = Object.values(sliders).reduce((sum, slider) => sum + parseInt(slider.value), 0);
-    return (total / 5).toFixed(1);
+const procedureSelect = document.getElementById('procedure');
+const locationSelect = document.getElementById('location');
+const gaugeFill = document.getElementById('gauge-fill');
+const gaugeText = document.getElementById('gauge-text');
+const ctx = document.getElementById('workflowChart').getContext('2d');
+let workflowChart;
+
+// Populate procedure dropdown
+function init() {
+    Object.keys(data).forEach(proc => {
+        const option = document.createElement('option');
+        option.value = proc;
+        option.textContent = proc;
+        procedureSelect.appendChild(option);
+    });
+    updateLocations();
+    updateDashboard();
 }
 
-// Update chart and score display
-function updateChart() {
-    const score = calculateSatisfaction();
-    overallScoreDisplay.textContent = score;
-    satisfactionChart.data.datasets[0].data = [score, 5 - score];
-    satisfactionChart.update();
+// Populate location dropdown based on selected procedure
+function updateLocations() {
+    const procedure = procedureSelect.value;
+    locationSelect.innerHTML = '';
+    Object.keys(data[procedure]).forEach(loc => {
+        const option = document.createElement('option');
+        option.value = loc;
+        option.textContent = loc;
+        locationSelect.appendChild(option);
+    });
 }
 
-// Update displays and chart on slider change
-Object.values(sliders).forEach(slider => {
-    slider.addEventListener('input', () => {
-        valueDisplays[slider.id].textContent = slider.value;
-        updateChart();
+// Update chart and gauge based on selections
+function updateDashboard() {
+    const procedure = procedureSelect.value;
+    const location = locationSelect.value;
+    const metrics = data[procedure][location];
+
+    // Update workflow chart
+    const labels = Object.keys(metrics.workflow);
+    const values = Object.values(metrics.workflow);
+    if (workflowChart) workflowChart.destroy();
+    workflowChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Minutes',
+                data: values,
+                backgroundColor: '#4285f4'
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
     });
+
+    // Update performance gauge
+    const percent = Math.round(metrics.performance * 100);
+    gaugeFill.style.width = percent + '%';
+    gaugeText.textContent = percent + '%';
+}
+
+procedureSelect.addEventListener('change', () => {
+    updateLocations();
+    updateDashboard();
 });
 
-// Reset sliders to default
-document.getElementById('reset').addEventListener('click', () => {
-    Object.values(sliders).forEach(slider => {
-        slider.value = 3;
-        valueDisplays[slider.id].textContent = 3;
-    });
-    updateChart();
-});
+locationSelect.addEventListener('change', updateDashboard);
 
-// Initial chart update
-updateChart();
+init();

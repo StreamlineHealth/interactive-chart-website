@@ -6,41 +6,57 @@ body {
 
 h1 {
     color: #333;
+    margin-bottom: 10px;
 }
 
-.slider-container {
+.controls {
     margin: 20px auto;
-    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 label {
-    display: block;
-    margin: 10px 0;
+    font-weight: bold;
 }
 
-input[type="range"] {
-    width: 100%;
+select {
+    margin-left: 10px;
+    padding: 5px;
 }
 
 .chart-container {
-    margin: 40px auto;
-    max-width: 400px;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-canvas {
-    width: 100% !important;
-    height: auto !important;
+.gauge-container {
+    margin: 30px auto;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
+.gauge {
+    position: relative;
+    height: 30px;
+    width: 300px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+#gauge-fill {
+    height: 100%;
+    width: 0%;
     background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
+    border-radius: 15px;
+    transition: width 0.5s ease-in-out;
 }
 
-button:hover {
-    background-color: #45a049;
+#gauge-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
 }
