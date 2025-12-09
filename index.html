@@ -3,36 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Satisfaction Calculator</title>
+    <title>Healthcare Labor Relations Navigator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Patient Satisfaction with Access to Healthcare</h1>
-    <p>Use the sliders to rate satisfaction (1 = very dissatisfied, 5 = very satisfied).</p>
+    <header class="hero">
+        <div class="hero__content">
+            <p class="eyebrow">Interactive roadmap</p>
+            <h1>Healthcare Labor Relations Navigator</h1>
+            <p class="lead">Assess organizing risk, spot early signals, and instantly see next steps for constructive engagement with clinical teams.</p>
+            <div class="hero__actions">
+                <button id="reset" class="secondary">Reset to baseline</button>
+            </div>
+        </div>
+        <div class="score">
+            <p class="score__label">Overall organizing risk</p>
+            <div class="score__value" id="overall-score">3.0</div>
+            <p class="score__hint">1 = low, 5 = high</p>
+        </div>
+    </header>
 
-    <div class="slider-container">
-        <label for="availability">Availability: <span id="availability-value">3</span></label>
-        <input type="range" id="availability" min="1" max="5" step="1" value="3">
+    <main>
+        <section class="panel">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">Diagnostic sliders</p>
+                    <h2>Estimate current pressures</h2>
+                    <p class="muted">Move the sliders based on what you're hearing from unit leaders and pulse surveys. The radar updates instantly.</p>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="sliders">
+                    <div class="slider" data-key="staffing">
+                        <div class="slider__label">
+                            <label for="staffing">Staffing pressure</label>
+                            <span id="staffing-value">3</span>
+                        </div>
+                        <p class="muted">Burnout, vacancy rates, premium pay reliance.</p>
+                        <input type="range" id="staffing" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div class="slider" data-key="compensation">
+                        <div class="slider__label">
+                            <label for="compensation">Pay & benefits friction</label>
+                            <span id="compensation-value">3</span>
+                        </div>
+                        <p class="muted">Compression, inequity perceptions, plan changes.</p>
+                        <input type="range" id="compensation" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div class="slider" data-key="voice">
+                        <div class="slider__label">
+                            <label for="voice">Voice & respect gap</label>
+                            <span id="voice-value">3</span>
+                        </div>
+                        <p class="muted">Frontline input on staffing, quality, scheduling.</p>
+                        <input type="range" id="voice" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div class="slider" data-key="safety">
+                        <div class="slider__label">
+                            <label for="safety">Safety & wellbeing risk</label>
+                            <span id="safety-value">3</span>
+                        </div>
+                        <p class="muted">Violence incidents, PPE adequacy, mental health access.</p>
+                        <input type="range" id="safety" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div class="slider" data-key="change">
+                        <div class="slider__label">
+                            <label for="change">Change turbulence</label>
+                            <span id="change-value">3</span>
+                        </div>
+                        <p class="muted">M&A, system go-lives, schedule redesigns, policy shifts.</p>
+                        <input type="range" id="change" min="1" max="5" step="1" value="3">
+                    </div>
+                    <div class="slider" data-key="manager">
+                        <div class="slider__label">
+                            <label for="manager">Manager responsiveness</label>
+                            <span id="manager-value">3</span>
+                        </div>
+                        <p class="muted">Issue follow-through, coaching quality, visibility on units.</p>
+                        <input type="range" id="manager" min="1" max="5" step="1" value="3">
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <canvas id="riskChart"></canvas>
+                    <div class="legend">
+                        <div class="legend__item"><span class="dot dot--risk"></span>Risk level</div>
+                        <div class="legend__item"><span class="dot dot--target"></span>Target ≤ 2</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <label for="accessibility">Accessibility: <span id="accessibility-value">3</span></label>
-        <input type="range" id="accessibility" min="1" max="5" step="1" value="3">
+        <section class="panel">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">Next-step playbook</p>
+                    <h2>Targeted actions based on your scores</h2>
+                    <p class="muted">High scores populate prioritized actions. Keep updates factual and balanced for lawful communication (FOE over TIPS).</p>
+                </div>
+            </div>
+            <div class="actions" id="action-list"></div>
+        </section>
 
-        <label for="accommodation">Accommodation: <span id="accommodation-value">3</span></label>
-        <input type="range" id="accommodation" min="1" max="5" step="1" value="3">
-
-        <label for="affordability">Affordability: <span id="affordability-value">3</span></label>
-        <input type="range" id="affordability" min="1" max="5" step="1" value="3">
-
-        <label for="acceptability">Acceptability: <span id="acceptability-value">3</span></label>
-        <input type="range" id="acceptability" min="1" max="5" step="1" value="3">
-    </div>
-
-    <div class="chart-container">
-        <canvas id="satisfactionChart"></canvas>
-        <p>Overall Satisfaction: <span id="overall-score">3.0</span></p>
-    </div>
-
-    <button id="reset">Reset to Default</button>
+        <section class="panel">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">Collective bargaining toolbox</p>
+                    <h2>If the workforce is already organized</h2>
+                    <p class="muted">Use these tools to prepare proposals, share data, and implement agreements consistently.</p>
+                </div>
+            </div>
+            <div class="tool-grid">
+                <div class="tool">
+                    <h3>Economic modeling</h3>
+                    <ul>
+                        <li>Proposal costing (wages, premiums, leave liabilities)</li>
+                        <li>Benchmark data by role and shift</li>
+                        <li>Scenario models for staffing language (ratios, float rules)</li>
+                    </ul>
+                </div>
+                <div class="tool">
+                    <h3>Information exchange</h3>
+                    <ul>
+                        <li>Ground rules and cadence for sessions</li>
+                        <li>Secure data room for information requests</li>
+                        <li>Templates for MOUs and side letters</li>
+                    </ul>
+                </div>
+                <div class="tool">
+                    <h3>Governance & training</h3>
+                    <ul>
+                        <li>Manager playbooks for just cause and discipline steps</li>
+                        <li>Joint safety or staffing committees with decision rights</li>
+                        <li>Contract summaries for unit leaders</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
