@@ -3,38 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Satisfaction Calculator</title>
+    <title>Healthcare Leadership Micro-Learning Lab</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Patient Satisfaction with Access to Healthcare</h1>
-    <p>Use the sliders to rate satisfaction (1 = very dissatisfied, 5 = very satisfied).</p>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="logo" href="#top">HLM Lab</a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+            <div class="nav-links" id="primary-menu">
+                <a href="#program">Program</a>
+                <a href="#modules">Modules</a>
+                <a href="#outcomes">Outcomes</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="nav-actions">
+                <a class="link" href="#contact">Contact</a>
+                <button class="button secondary">Request Demo</button>
+            </div>
+        </nav>
+    </header>
 
-    <div class="slider-container">
-        <label for="availability">Availability: <span id="availability-value">3</span></label>
-        <input type="range" id="availability" min="1" max="5" step="1" value="3">
+    <main id="top">
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">Healthcare Leadership Micro-Learning Lab</p>
+                <h1>Build confident healthcare leaders in 12 minutes a week.</h1>
+                <p class="hero-subtitle">A WordPress-ready learning hub with bite-sized leadership labs, real-world simulations, and on-demand coaching prompts for emerging and mid-level healthcare managers.</p>
+                <div class="hero-actions">
+                    <button class="button">Launch the Lab</button>
+                    <button class="button ghost">Download sample lesson</button>
+                </div>
+                <div class="hero-metrics">
+                    <div>
+                        <h3>48</h3>
+                        <p>Micro-learning labs</p>
+                    </div>
+                    <div>
+                        <h3>6</h3>
+                        <p>Leadership focus areas</p>
+                    </div>
+                    <div>
+                        <h3>92%</h3>
+                        <p>Completion rates</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card">
+                <div class="card-header">
+                    <span>Weekly Lab Schedule</span>
+                    <span class="pill">Week 04</span>
+                </div>
+                <h2>Service Recovery Masterclass</h2>
+                <p>Practice high-stakes patient conversations and reduce escalation time with a 3-step leadership script.</p>
+                <ul>
+                    <li>7-minute video with scenario branching</li>
+                    <li>2 leadership reflection prompts</li>
+                    <li>Quick pulse survey</li>
+                </ul>
+                <button class="button full">Preview this lab</button>
+            </div>
+        </section>
 
-        <label for="accessibility">Accessibility: <span id="accessibility-value">3</span></label>
-        <input type="range" id="accessibility" min="1" max="5" step="1" value="3">
+        <section class="program" id="program">
+            <div class="section-title">
+                <p class="eyebrow">Program design</p>
+                <h2>Designed for hospital systems, clinics, and health networks.</h2>
+                <p>Configure the lab as a WordPress microsite with branded lessons, automated nudges, and analytics dashboards for leadership development.</p>
+            </div>
+            <div class="program-grid">
+                <article>
+                    <h3>Micro-learning pathways</h3>
+                    <p>Curated 10-15 minute labs that fit into shift changes and rounding schedules.</p>
+                </article>
+                <article>
+                    <h3>Interactive simulations</h3>
+                    <p>Scenario-based leadership practice aligned to patient safety, DEI, and compliance.</p>
+                </article>
+                <article>
+                    <h3>Coaching moments</h3>
+                    <p>Manager prompts and downloadable huddle guides that reinforce application.</p>
+                </article>
+                <article>
+                    <h3>WordPress-ready</h3>
+                    <p>Launch quickly using reusable blocks, gated content, and LMS-ready integrations.</p>
+                </article>
+            </div>
+        </section>
 
-        <label for="accommodation">Accommodation: <span id="accommodation-value">3</span></label>
-        <input type="range" id="accommodation" min="1" max="5" step="1" value="3">
+        <section class="modules" id="modules">
+            <div class="section-title">
+                <p class="eyebrow">Leadership pillars</p>
+                <h2>Six pillars that elevate clinical leadership confidence.</h2>
+            </div>
+            <div class="pillars">
+                <div class="pillar">
+                    <h3>Patient experience</h3>
+                    <p>Lead service recovery conversations and protect compassion under pressure.</p>
+                </div>
+                <div class="pillar">
+                    <h3>Team engagement</h3>
+                    <p>Coach performance, build trust, and sustain engagement across shifts.</p>
+                </div>
+                <div class="pillar">
+                    <h3>Operational excellence</h3>
+                    <p>Reduce bottlenecks, align staffing, and drive throughput improvements.</p>
+                </div>
+                <div class="pillar">
+                    <h3>Clinical quality</h3>
+                    <p>Reinforce safety behaviors, compliance, and evidence-based standards.</p>
+                </div>
+                <div class="pillar">
+                    <h3>Change leadership</h3>
+                    <p>Navigate digital transformation and mentor adoption of new tools.</p>
+                </div>
+                <div class="pillar">
+                    <h3>Wellbeing & resilience</h3>
+                    <p>Support emotional regulation and prevent burnout in frontline teams.</p>
+                </div>
+            </div>
+        </section>
 
-        <label for="affordability">Affordability: <span id="affordability-value">3</span></label>
-        <input type="range" id="affordability" min="1" max="5" step="1" value="3">
+        <section class="outcomes" id="outcomes">
+            <div class="section-title">
+                <p class="eyebrow">Outcomes</p>
+                <h2>Measure leadership growth with actionable analytics.</h2>
+            </div>
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <h3>Insight dashboard</h3>
+                    <p>Track completion, confidence, and behavior change by cohort or unit.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Leadership pulse checks</h3>
+                    <p>Weekly survey data that highlights coaching priorities.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Executive summary</h3>
+                    <p>Automated PDF snapshots for HR and clinical leadership reporting.</p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div>
+                    <p>“Our nurse managers finally have leadership development that respects their time. The lab format helped us raise engagement scores in 60 days.”</p>
+                    <span>— Andrea L., Chief Nursing Officer</span>
+                </div>
+                <button class="button ghost">Read the case study</button>
+            </div>
+        </section>
 
-        <label for="acceptability">Acceptability: <span id="acceptability-value">3</span></label>
-        <input type="range" id="acceptability" min="1" max="5" step="1" value="3">
-    </div>
+        <section class="pricing" id="pricing">
+            <div class="section-title">
+                <p class="eyebrow">Pricing</p>
+                <h2>Flexible plans to scale with your leadership cohort.</h2>
+            </div>
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <h3>Starter Lab</h3>
+                    <p class="price">$1,250<span>/month</span></p>
+                    <ul>
+                        <li>Up to 50 learners</li>
+                        <li>24 lab library</li>
+                        <li>Email nudges</li>
+                    </ul>
+                    <button class="button ghost full">Start a pilot</button>
+                </article>
+                <article class="price-card featured">
+                    <div class="pill">Most Popular</div>
+                    <h3>Growth Lab</h3>
+                    <p class="price">$2,850<span>/month</span></p>
+                    <ul>
+                        <li>Up to 200 learners</li>
+                        <li>Full 48 lab library</li>
+                        <li>Advanced analytics</li>
+                    </ul>
+                    <button class="button full">Book a demo</button>
+                </article>
+                <article class="price-card">
+                    <h3>Enterprise Lab</h3>
+                    <p class="price">Custom<span>/month</span></p>
+                    <ul>
+                        <li>Unlimited cohorts</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated success lead</li>
+                    </ul>
+                    <button class="button ghost full">Talk to sales</button>
+                </article>
+            </div>
+        </section>
 
-    <div class="chart-container">
-        <canvas id="satisfactionChart"></canvas>
-        <p>Overall Satisfaction: <span id="overall-score">3.0</span></p>
-    </div>
+        <section class="faq" id="faq">
+            <div class="section-title">
+                <p class="eyebrow">FAQ</p>
+                <h2>Answers for your implementation team.</h2>
+            </div>
+            <div class="faq-grid">
+                <details>
+                    <summary>How fast can we launch the lab in WordPress?</summary>
+                    <p>Most teams launch in 2-3 weeks using our WordPress block templates, branded modules, and LMS integrations.</p>
+                </details>
+                <details>
+                    <summary>Do you provide reporting for HR and clinical leadership?</summary>
+                    <p>Yes. Dashboards show participation, confidence, and behavior change trends, with exportable executive summaries.</p>
+                </details>
+                <details>
+                    <summary>Can we customize modules for our service lines?</summary>
+                    <p>Absolutely. We tailor scenarios, assessments, and coaching prompts by specialty or facility.</p>
+                </details>
+                <details>
+                    <summary>What support do you provide for facilitators?</summary>
+                    <p>We include facilitator guides, huddle scripts, and a quarterly leadership coaching circle.</p>
+                </details>
+            </div>
+        </section>
 
-    <button id="reset">Reset to Default</button>
+        <section class="contact" id="contact">
+            <div class="contact-card">
+                <div>
+                    <p class="eyebrow">Launch readiness</p>
+                    <h2>Ready to build your Healthcare Leadership Micro-Learning Lab?</h2>
+                    <p>Tell us about your organization and we will tailor a pilot in 5 business days.</p>
+                    <ul class="checklist">
+                        <li>Needs assessment and cohort sizing</li>
+                        <li>WordPress setup plan</li>
+                        <li>Sample facilitator toolkit</li>
+                    </ul>
+                </div>
+                <form>
+                    <label>
+                        Name
+                        <input type="text" placeholder="Your name">
+                    </label>
+                    <label>
+                        Work email
+                        <input type="email" placeholder="you@healthsystem.org">
+                    </label>
+                    <label>
+                        Organization size
+                        <select>
+                            <option>1-50 clinicians</option>
+                            <option>51-250 clinicians</option>
+                            <option>251-1000 clinicians</option>
+                            <option>1000+ clinicians</option>
+                        </select>
+                    </label>
+                    <button class="button full" type="submit">Request consultation</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <footer class="site-footer">
+        <div>
+            <h3>HLM Lab</h3>
+            <p>Micro-learning leadership development built for healthcare teams.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#program">Program</a>
+            <a href="#modules">Modules</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div>
+            <p>© 2024 Healthcare Leadership Micro-Learning Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
