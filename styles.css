@@ -1,46 +1,213 @@
+:root {
+    --bg: #f4f7fb;
+    --panel: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --done: #0f766e;
+    --warn: #b45309;
+    --border: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    text-align: center;
+    margin: 0;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.45;
 }
 
-h1 {
-    color: #333;
+header,
+main {
+    width: min(1200px, 94vw);
+    margin: 0 auto;
 }
 
-.slider-container {
-    margin: 20px auto;
-    max-width: 600px;
+header {
+    padding: 1.5rem 0 1rem;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+header p {
+    margin-top: 0.5rem;
+    color: var(--muted);
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0;
+    align-items: end;
 }
 
 label {
     display: block;
-    margin: 10px 0;
+    margin-bottom: 0.45rem;
+    font-weight: 600;
 }
 
-input[type="range"] {
-    width: 100%;
-}
-
-.chart-container {
-    margin: 40px auto;
-    max-width: 400px;
-}
-
-canvas {
-    width: 100% !important;
-    height: auto !important;
+select,
+button {
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    background: #fff;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: white;
     border: none;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+    filter: brightness(0.95);
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard article {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 0.9rem;
+}
+
+.dashboard h2 {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.dashboard p {
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.flowchart,
+.detail-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.steps {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.7rem;
+}
+
+.step {
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0.7rem;
+    background: #fff;
+    padding: 0.8rem;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.step::after {
+    content: "↓";
+    position: absolute;
+    left: 50%;
+    bottom: -0.8rem;
+    transform: translateX(-50%);
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.step:last-child::after {
+    content: "";
+}
+
+.step h3 {
+    font-size: 1rem;
+}
+
+.step .meta {
+    margin-top: 0.3rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.step.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.step.done {
+    border-left-color: var(--done);
+}
+
+.step.done h3::before {
+    content: "✔ ";
+    color: var(--done);
+}
+
+.step.hidden {
+    display: none;
+}
+
+.step .risk {
+    display: inline-block;
+    margin-top: 0.35rem;
+    background: #fff7ed;
+    color: var(--warn);
+    font-size: 0.75rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+}
+
+.detail-panel p {
+    margin-top: 0.5rem;
+    color: var(--muted);
+}
+
+#detailMetrics {
+    margin: 0.8rem 0 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.35rem;
+}
+
+@media (max-width: 920px) {
+    .dashboard {
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
 }
