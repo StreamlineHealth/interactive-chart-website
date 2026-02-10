@@ -3,38 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Satisfaction Calculator</title>
+    <title>MRI Department Workflow Builder</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Patient Satisfaction with Access to Healthcare</h1>
-    <p>Use the sliders to rate satisfaction (1 = very dissatisfied, 5 = very satisfied).</p>
+    <header>
+        <h1>MRI Department End-to-End Workflow Model</h1>
+        <p>
+            Interactive flowchart from order request to finalized radiology report.
+            Select any step to inspect operational analytics and identify bottlenecks.
+        </p>
+    </header>
 
-    <div class="slider-container">
-        <label for="availability">Availability: <span id="availability-value">3</span></label>
-        <input type="range" id="availability" min="1" max="5" step="1" value="3">
+    <main>
+        <section class="controls" aria-label="Workflow Controls">
+            <div>
+                <label for="stageFilter">Filter by stage</label>
+                <select id="stageFilter">
+                    <option value="all">All stages</option>
+                    <option value="Ordering">Ordering</option>
+                    <option value="Authorization">Authorization</option>
+                    <option value="Scheduling">Scheduling</option>
+                    <option value="Patient Prep">Patient Prep</option>
+                    <option value="Imaging">Imaging</option>
+                    <option value="Interpretation">Interpretation</option>
+                    <option value="Reporting">Reporting</option>
+                </select>
+            </div>
+            <button id="resetSimulation">Reset Simulation</button>
+        </section>
 
-        <label for="accessibility">Accessibility: <span id="accessibility-value">3</span></label>
-        <input type="range" id="accessibility" min="1" max="5" step="1" value="3">
+        <section class="dashboard" aria-label="Workflow Analytics Dashboard">
+            <article>
+                <h2>Total workflow turnaround</h2>
+                <p><span id="totalHours">0</span> hours</p>
+            </article>
+            <article>
+                <h2>Median wait per handoff</h2>
+                <p><span id="medianWait">0</span> minutes</p>
+            </article>
+            <article>
+                <h2>Current bottleneck</h2>
+                <p id="bottleneckName">—</p>
+            </article>
+            <article>
+                <h2>Completed steps</h2>
+                <p><span id="completedCount">0</span>/<span id="totalCount">0</span></p>
+            </article>
+        </section>
 
-        <label for="accommodation">Accommodation: <span id="accommodation-value">3</span></label>
-        <input type="range" id="accommodation" min="1" max="5" step="1" value="3">
+        <section class="content-grid">
+            <section class="flowchart" aria-label="MRI Workflow Steps">
+                <h2>Detailed Process Flow</h2>
+                <div id="workflowSteps" class="steps"></div>
+            </section>
 
-        <label for="affordability">Affordability: <span id="affordability-value">3</span></label>
-        <input type="range" id="affordability" min="1" max="5" step="1" value="3">
+            <aside class="detail-panel" aria-live="polite" aria-label="Step analytics detail">
+                <h2 id="detailTitle">Select a step</h2>
+                <p id="detailDescription">Click a node in the flowchart to inspect metrics and interventions.</p>
+                <ul id="detailMetrics"></ul>
+            </aside>
+        </section>
+    </main>
 
-        <label for="acceptability">Acceptability: <span id="acceptability-value">3</span></label>
-        <input type="range" id="acceptability" min="1" max="5" step="1" value="3">
-    </div>
-
-    <div class="chart-container">
-        <canvas id="satisfactionChart"></canvas>
-        <p>Overall Satisfaction: <span id="overall-score">3.0</span></p>
-    </div>
-
-    <button id="reset">Reset to Default</button>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
