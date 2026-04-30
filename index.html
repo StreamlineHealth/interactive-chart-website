@@ -3,36 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Satisfaction Calculator</title>
+    <title>Outpatient MRI Satisfaction Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Patient Satisfaction with Access to Healthcare</h1>
-    <p>Use the sliders to rate satisfaction (1 = very dissatisfied, 5 = very satisfied).</p>
+    <main class="page">
+        <header>
+            <h1>Outpatient MRI Center Patient Satisfaction</h1>
+            <p>Collect patient feedback and automatically roll each completed survey into a central dataset for analysis.</p>
+        </header>
 
-    <div class="slider-container">
-        <label for="availability">Availability: <span id="availability-value">3</span></label>
-        <input type="range" id="availability" min="1" max="5" step="1" value="3">
+        <section class="card survey-card">
+            <h2>Patient Survey</h2>
+            <p class="helper">Rate each question from 1 (Very Dissatisfied) to 5 (Very Satisfied).</p>
 
-        <label for="accessibility">Accessibility: <span id="accessibility-value">3</span></label>
-        <input type="range" id="accessibility" min="1" max="5" step="1" value="3">
+            <div class="slider-container" id="survey-fields">
+                <label for="checkin">Check-in Experience: <span id="checkin-value">3</span></label>
+                <input type="range" id="checkin" min="1" max="5" step="1" value="3">
 
-        <label for="accommodation">Accommodation: <span id="accommodation-value">3</span></label>
-        <input type="range" id="accommodation" min="1" max="5" step="1" value="3">
+                <label for="waitTime">Wait Time: <span id="waitTime-value">3</span></label>
+                <input type="range" id="waitTime" min="1" max="5" step="1" value="3">
 
-        <label for="affordability">Affordability: <span id="affordability-value">3</span></label>
-        <input type="range" id="affordability" min="1" max="5" step="1" value="3">
+                <label for="staffCourtesy">Staff Courtesy: <span id="staffCourtesy-value">3</span></label>
+                <input type="range" id="staffCourtesy" min="1" max="5" step="1" value="3">
 
-        <label for="acceptability">Acceptability: <span id="acceptability-value">3</span></label>
-        <input type="range" id="acceptability" min="1" max="5" step="1" value="3">
-    </div>
+                <label for="communication">MRI Procedure Explanation: <span id="communication-value">3</span></label>
+                <input type="range" id="communication" min="1" max="5" step="1" value="3">
 
-    <div class="chart-container">
-        <canvas id="satisfactionChart"></canvas>
-        <p>Overall Satisfaction: <span id="overall-score">3.0</span></p>
-    </div>
+                <label for="comfort">Comfort During Scan: <span id="comfort-value">3</span></label>
+                <input type="range" id="comfort" min="1" max="5" step="1" value="3">
+            </div>
 
-    <button id="reset">Reset to Default</button>
+            <div class="actions">
+                <button id="submitSurvey">Submit Survey</button>
+                <button id="resetSurvey" class="secondary">Reset</button>
+            </div>
+            <p id="submitMessage" aria-live="polite"></p>
+        </section>
+
+        <section class="card dashboard-card">
+            <h2>Live Satisfaction Dashboard</h2>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <p>Total Surveys</p>
+                    <strong id="surveyCount">0</strong>
+                </div>
+                <div class="stat">
+                    <p>Overall Average</p>
+                    <strong id="overallAverage">0.0</strong>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <h3>Question Averages</h3>
+                    <canvas id="avgByQuestionChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Response Distribution</h3>
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <h3>Recent Submissions</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Check-in</th>
+                            <th>Wait</th>
+                            <th>Courtesy</th>
+                            <th>Explanation</th>
+                            <th>Comfort</th>
+                            <th>Avg</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentSubmissions"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
